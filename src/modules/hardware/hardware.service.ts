@@ -1,11 +1,12 @@
-import { Injectable } from '@nestjs/common';
-import { CreateHardwareDto } from './dto/create-hardware.dto';
-import { UpdateHardwareDto } from './dto/update-hardware.dto';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { Injectable } from "@nestjs/common";
+import { CreateHardwareDto } from "./dto/create-hardware.dto";
+import { UpdateHardwareDto } from "./dto/update-hardware.dto";
 
 @Injectable()
 export class HardwareService {
   create(createHardwareDto: CreateHardwareDto) {
-    return 'This action adds a new hardware';
+    return "This action adds a new hardware";
   }
 
   findAll() {

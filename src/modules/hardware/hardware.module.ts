@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
-import { HardwareService } from './hardware.service';
-import { HardwareController } from './hardware.controller';
+import { Module } from "@nestjs/common";
+import { HardwareService } from "./hardware.service";
+import { HardwareController } from "./hardware.controller";
 
 @Module({
   controllers: [HardwareController],
-  providers: [HardwareService]
+  providers: [HardwareService],
 })
 export class HardwareModule {}
