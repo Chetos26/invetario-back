@@ -1,26 +1,84 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CategoryDto } from './dto/category.dto';
+import { Category } from './entities/category.entity';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
+import { ErrorManager } from 'src/utils/error.manager';
 
 @Injectable()
 export class CategoriesService {
-  create(createCategoryDto: CreateCategoryDto) {
-    return 'This action adds a new category';
+  constructor(
+    @InjectRepository(Category) private categoryRepostory: Repository<Category>
+    ){}
+    
+
+  async create(createcategoryDto: CategoryDto):Promise<Category> {
+    try {
+        const category: Category = await this.categoryRepostory.save(createcategoryDto);
+        return category;
+      } catch (e) {
+        throw new Error(e);
+    }
   }
 
-  findAll() {
-    return `This action returns all categories`;
+  async findAll():Promise<Category[]> {
+    try {
+        const category: Category[] =await this.categoryRepostory.find();
+        if (category.length === 0) {
+          throw new ErrorManager({
+            type:'BAD_REQUEST',
+            message:'No existen registros'
+          });
+        }
+        return category
+      } catch (e) {
+        throw ErrorManager.createSignatureError(e.message);
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} category`;
+  async findOne(id: string):Promise<Category> {
+    try {
+        const category: Category = await this.categoryRepostory.createQueryBuilder('hardware').where({id}).getOne()
+        if (!category) {
+          throw new ErrorManager({
+            type:'BAD_REQUEST',
+            message:'No se ha encontrado el registro'
+          });
+        }
+        return category;
+      } catch (e) {
+        throw ErrorManager.createSignatureError(e.message);
+    }
+  }
+  async update(id: string, updatecategoryDto: UpdateCategoryDto):Promise<UpdateResult | undefined> {
+   try {
+       const category: UpdateResult =  await this.categoryRepostory.update(id,updatecategoryDto);
+       if (category.affected === 0) {
+        throw new ErrorManager({
+          type:'BAD_REQUEST',
+          message:'No se ha podido actualizar'
+        });
+       }
+        return category;
+     } catch (e) {
+      throw ErrorManager.createSignatureError(e.message)
+   }
   }
 
-  update(id: number, updateCategoryDto: UpdateCategoryDto) {
-    return `This action updates a #${id} category`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} category`;
-  }
+  async remove(id: string):Promise<DeleteResult | undefined> {
+    try {
+        const category: DeleteResult =  await this.categoryRepostory.delete(id);
+        if (category.affected === 0) {
+          throw new ErrorManager({
+            type:'BAD_REQUEST',
+            message:'No se ha podido borrar'
+          });
+        }
+          return category;
+      } catch (e) {
+        throw ErrorManager.createSignatureError(e.message)
+    }
+   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { HttpException, HttpStatus } from "@nestjs/common";
 
 export class ErrorManager extends Error {
