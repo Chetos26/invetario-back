@@ -14,6 +14,14 @@ export class Users {
 
   @Column('varchar',{
     name: 'nombre_u',
+    length: 15,
+    nullable: false,
+    comment: 'Nombre del usuario',  
+    })
+    cargo: string;
+
+  @Column('varchar',{
+    name: 'nombre_u',
     length: 10,
     nullable: false,
     comment: 'Nombre del usuario',  

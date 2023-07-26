@@ -12,6 +12,10 @@ export class UpdateUsersDto extends PartialType(CreateUsersDto) {
 
   @IsNotEmpty()
   @IsString()
+  cargo: string;
+
+  @IsNotEmpty()
+  @IsString()
   nombre: string;
 
   @IsNotEmpty()

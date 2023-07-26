@@ -8,11 +8,15 @@ export class UsersDto {
 
   @IsNotEmpty()
   @IsString()
-  nombre: string;
+  cargo: string;
 
   @IsNotEmpty()
   @IsString()
-  apellido: string;
+  nombre_u: string;
+
+  @IsNotEmpty()
+  @IsString()
+  apellido_u: string;
 
   @IsNotEmpty()
   @IsString()

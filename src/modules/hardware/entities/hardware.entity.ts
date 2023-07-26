@@ -15,10 +15,32 @@ export class Hardware {
     image: string;
 
     @Column('varchar',{
-        name: 'sn',
-        length: 10,
+        name: 'monitor_sn',
+        length: 20,
         nullable: false,
-        comment: 'Numero de Serie',  
+        comment: 'Numero de serie Monitor',  
+        })
+    monitor_sn: string;
+
+    @Column('varchar',{
+        name: 'mouse',
+        nullable: false,
+        comment: 'Mouse',  
+        })
+    mouse: boolean;
+
+    @Column('varchar',{
+        name: 'teclado',
+        nullable: false,
+        comment: 'Teclado',  
+        })
+    teclado: boolean;
+
+    @Column('varchar',{
+        name: 'sn',
+        length: 20,
+        nullable: false,
+        comment: 'Numero de Serie del computador',  
         })
     sn: string;
 
@@ -31,24 +53,8 @@ export class Hardware {
     marca: string;
 
     @Column('varchar',{
-        name: 'modelo',
-        length: 10,
-        nullable: false,
-        comment: 'Modelo del equipo',  
-    })
-    modelo: string;
-
-    @Column('varchar',{
-        name: 'os',
-        length: 15,
-        nullable: false,
-        comment: 'Sistema operativo del equipo',  
-    })
-    os: string;
-
-    @Column('varchar',{
         name: 'procesador',
-        length: 15,
+        length: 100,
         nullable: false,
         comment: 'Procesador del equipo',  
     })
@@ -56,11 +62,20 @@ export class Hardware {
 
     @Column('varchar',{
         name: 'ram',
-        length: 15,
+        length: 100,
         nullable: false,
         comment: 'RAM del equipo',  
     })
     ram: string;
+
+
+    @Column('varchar',{
+        name: 'sala',
+        length: 15,
+        nullable: false,
+        comment: 'Ubicacion del equipo',  
+    })
+    sala: string;
 
     @ManyToOne(type=> Users, users => users.hardware)
     users: Users;
