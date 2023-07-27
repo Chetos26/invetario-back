@@ -7,26 +7,28 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 export class Users {
 
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+    id_u: string;
 
   @ImageColumn()
-  imagePath: string;
+    foto: string;
+    nullable: true;
 
+  @Column('varchar',{
+    name: 'cargo',
+    length: 15,
+    nullable: false,
+    comment: 'Cargo del usuario',  
+    })
+    cargo: string;
+    
   @Column('varchar',{
     name: 'nombre_u',
     length: 15,
     nullable: false,
     comment: 'Nombre del usuario',  
     })
-    cargo: string;
-
-  @Column('varchar',{
-    name: 'nombre_u',
-    length: 10,
-    nullable: false,
-    comment: 'Nombre del usuario',  
-    })
     nombre_u: string;
+
 
   @Column('varchar',{
     name: 'apellido_u',

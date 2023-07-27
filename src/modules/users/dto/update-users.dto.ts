@@ -16,11 +16,11 @@ export class UpdateUsersDto extends PartialType(CreateUsersDto) {
 
   @IsNotEmpty()
   @IsString()
-  nombre: string;
+  nombre_u: string;
 
   @IsNotEmpty()
   @IsString()
-  apellido: string;
+  apellido_u: string;
 
   @IsNotEmpty()
   @IsString()

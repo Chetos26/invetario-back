@@ -5,7 +5,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 @Entity('Categorias')
 export class Category {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id_c: string;
 
   @Column('varchar', {
     name: 'nombre_c',

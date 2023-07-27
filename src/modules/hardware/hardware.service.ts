@@ -8,16 +8,17 @@ import { ErrorManager } from "src/utils/error.manager";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Category } from "../categories/entities/category.entity";
 import { Hardware } from "./entities/hardware.entity";
+import { HardwareDto } from "./dto/hardware.dto";
 
 @Injectable()
 export class HardwareService {
   constructor(
-    @InjectRepository(Hardware) private hardwareepostory: Repository<Hardware>,
+    @InjectRepository(Hardware) private hardwareRepostory: Repository<Hardware>,
     @InjectRepository(Category) private categoryRepostory: Repository<Category>
     ){}
     
 
-  async create(createhardwareDto: Hardware):Promise<Hardware> {
+  async create(createhardwareDto: HardwareDto):Promise<Hardware> {
     try {
         const hardware: Hardware = await this.hardwareRepostory.save(createhardwareDto);
         return hardware;
@@ -26,7 +27,7 @@ export class HardwareService {
     }
   }
 
-  async findAll():Promise<Event[]> {
+  /*async findAll():Promise<Event[]> {
     try {
         const hardware: Event[] =await this.hardwareepostory.createQueryBuilder('eventos')
         .leftJoinAndSelect('eventos.maestro','maestro')
@@ -44,8 +45,8 @@ export class HardwareService {
       } catch (e) {
         throw ErrorManager.createSignatureError(e.message);
     }
-  }
-  async findAllbyUser(user:string):Promise<Event[]> {
+  }*/
+  /*async findAllbyUser(user:string):Promise<Event[]> {
     try {
         const subjects: Event[] =await this.eventRepostory.createQueryBuilder('eventos')
         .leftJoinAndSelect('eventos.categoria','categoria')
@@ -63,9 +64,9 @@ export class HardwareService {
       } catch (e) {
         throw ErrorManager.createSignatureError(e.message);
     }
-  }
+  }*/
 
-  async findOne(id: string):Promise<Event> {
+  /*async findOne(id: string):Promise<Event> {
     try {
         const event: Event = await this.eventRepostory
         .createQueryBuilder('eventos')
@@ -84,8 +85,8 @@ export class HardwareService {
       } catch (e) {
         throw ErrorManager.createSignatureError(e.message);
     }
-  }
-  async update(id: string, updateeventDto: UpdateHardwareDto):Promise<UpdateResult | undefined> {
+  }*/
+  /*async update(id: string, updateeventDto: UpdateHardwareDto):Promise<UpdateResult | undefined> {
    try {
        const event: UpdateResult =  await this.eventRepostory.update(id,updateeventDto);
        if (event.affected === 0) {
@@ -114,5 +115,5 @@ export class HardwareService {
       } catch (e) {
         throw ErrorManager.createSignatureError(e.message)
     }
-   }
+   }*/
 }

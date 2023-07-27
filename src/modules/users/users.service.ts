@@ -18,6 +18,7 @@ export class UsersService {
 
   async create(createusersDto: UsersDto):Promise<Users> {
     try {
+      console.log(createusersDto)
         const users: Users = await this.usersRepostory.save(createusersDto);
         return users;
       } catch (e) {

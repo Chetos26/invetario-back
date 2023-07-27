@@ -9,14 +9,14 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 export class Hardware {
     
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id_h: string;
 
     @ImageColumn()
     image: string;
 
     @Column('varchar',{
         name: 'monitor_sn',
-        length: 20,
+        length: 50,
         nullable: false,
         comment: 'Numero de serie Monitor',  
         })
@@ -38,7 +38,7 @@ export class Hardware {
 
     @Column('varchar',{
         name: 'sn',
-        length: 20,
+        length: 50,
         nullable: false,
         comment: 'Numero de Serie del computador',  
         })

@@ -2,6 +2,7 @@
 import { IsNotEmpty, IsString} from "class-validator";
 
 export class UsersDto {
+  
   @IsNotEmpty()
   @IsString()
   foto: string;
