@@ -80,8 +80,8 @@ export class Hardware {
     @ManyToOne(type=> Users, users => users.hardware)
     users: Users;
 
-    @ManyToOne(type=> Category, categorias=> categorias.hardware)
-    categorias: Category;
+    @ManyToOne(type=> Category, categories=> categories.hardware)
+    categories: Category;
 
 
 }

@@ -12,14 +12,14 @@ import { UpdateUsersDto } from './dto/update-users.dto';
 @Injectable()
 export class UsersService {
   constructor(
-    @InjectRepository(Users) private usersRepostory: Repository<Users>
+    @InjectRepository(Users) private usersRepository: Repository<Users>
     ){}
     
 
   async create(createusersDto: UsersDto):Promise<Users> {
     try {
       console.log(createusersDto)
-        const users: Users = await this.usersRepostory.save(createusersDto);
+        const users: Users = await this.usersRepository.save(createusersDto);
         return users;
       } catch (e) {
         throw new Error(e);
@@ -28,7 +28,7 @@ export class UsersService {
 
   async findAll():Promise<Users[]> {
     try {
-        const users: Users[] =await this.usersRepostory.find();
+        const users: Users[] =await this.usersRepository.find();
         if (users.length === 0) {
           throw new ErrorManager({
             type:'BAD_REQUEST',
@@ -41,9 +41,9 @@ export class UsersService {
     }
   }
 
-  async findOne(id: string):Promise<Users> {
+  async findOne(id_u: string):Promise<Users> {
     try {
-        const users: Users = await this.usersRepostory.createQueryBuilder('users').where({id}).getOne()
+        const users: Users = await this.usersRepository.createQueryBuilder('users').where({id_u}).getOne()
         if (!users) {
           throw new ErrorManager({
             type:'BAD_REQUEST',
@@ -55,24 +55,25 @@ export class UsersService {
         throw ErrorManager.createSignatureError(e.message);
     }
   }
-  async update(id: string, updateusersDto: UpdateUsersDto):Promise<UpdateResult | undefined> {
-   try {
-       const users: UpdateResult =  await this.usersRepostory.update(id,updateusersDto);
-       if (users.affected === 0) {
+  
+  async update(id_u: string, updateUsersDto: UpdateUsersDto): Promise<UpdateResult | undefined> {
+    try {
+      const users: UpdateResult = await this.usersRepository.update(id_u, updateUsersDto);
+      if (users.affected === 0) {
         throw new ErrorManager({
-          type:'BAD_REQUEST',
-          message:'No se ha podido actualizar'
+          type: 'BAD_REQUEST',
+          message: 'No se ha podido actualizar',
         });
-       }
-        return users;
-     } catch (e) {
-      throw ErrorManager.createSignatureError(e.message)
-   }
+      }
+      return users;
+    } catch (e) {
+      throw ErrorManager.createSignatureError(e.message);
+    }
   }
 
-  async remove(id: string):Promise<DeleteResult | undefined> {
+  async remove(id_u: string):Promise<DeleteResult | undefined> {
     try {
-        const users: DeleteResult =  await this.usersRepostory.delete(id);
+        const users: DeleteResult =  await this.usersRepository.delete(id_u);
         if (users.affected === 0) {
           throw new ErrorManager({
             type:'BAD_REQUEST',

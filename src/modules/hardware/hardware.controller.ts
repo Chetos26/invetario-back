@@ -20,26 +20,26 @@ export class HardwareController {
     return this.hardwareService.create(createHardwareDto);
   }
 
-  /*@Get()
+  @Get()
   findAll() {
     return this.hardwareService.findAll();
   }
 
-  @Get(":id")
-  findOne(@Param("id") id: string) {
-    return this.hardwareService.findOne(+id);
+  @Get(":id_h")
+  findOne(@Param("id_h") id_h: string) {
+    return this.hardwareService.findOne(id_h);
   }
 
-  @Patch(":id")
+  @Patch(":id_h")
   update(
-    @Param("id") id: string,
+    @Param("id_h") id_h: string,
     @Body() updateHardwareDto: UpdateHardwareDto,
   ) {
-    return this.hardwareService.update(+id, updateHardwareDto);
+    return this.hardwareService.update(id_h, updateHardwareDto);
   }
 
-  @Delete(":id")
-  remove(@Param("id") id: string) {
-    return this.hardwareService.remove(+id);
-  }*/
+  @Delete(":id_h")
+  remove(@Param("id_h") id_h: string) {
+    return this.hardwareService.remove(id_h);
+  }
 }

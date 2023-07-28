@@ -7,7 +7,6 @@ export class UpdateUsersDto extends PartialType(CreateUsersDto) {
   
   @IsNotEmpty()
   @IsString()
-  @IsOptional()
   foto: string;
 
   @IsNotEmpty()
@@ -24,9 +23,10 @@ export class UpdateUsersDto extends PartialType(CreateUsersDto) {
 
   @IsNotEmpty()
   @IsString()
-  email: string;
+  telefono: string;
 
   @IsNotEmpty()
   @IsString()
-  telefono: string;
+  email: string;
+
 }

@@ -9,111 +9,80 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Category } from "../categories/entities/category.entity";
 import { Hardware } from "./entities/hardware.entity";
 import { HardwareDto } from "./dto/hardware.dto";
+import { PaginationDto } from "src/common/dto/pagination.dto";
+import { Users } from "../users/entities/users.entity";
 
 @Injectable()
 export class HardwareService {
   constructor(
-    @InjectRepository(Hardware) private hardwareRepostory: Repository<Hardware>,
-    @InjectRepository(Category) private categoryRepostory: Repository<Category>
+    @InjectRepository(Hardware) private hardwareRepository: Repository<Hardware>,
+    @InjectRepository(Category) private categoryRepository: Repository<Category>,
+    @InjectRepository(Category) private usersRepository: Repository<Users>
     ){}
     
 
   async create(createhardwareDto: HardwareDto):Promise<Hardware> {
     try {
-        const hardware: Hardware = await this.hardwareRepostory.save(createhardwareDto);
+        const hardware: Hardware = await this.hardwareRepository.save(createhardwareDto);
         return hardware;
       } catch (e) {
         throw new Error(e);
     }
   }
 
-  /*async findAll():Promise<Event[]> {
-    try {
-        const hardware: Event[] =await this.hardwareepostory.createQueryBuilder('eventos')
-        .leftJoinAndSelect('eventos.maestro','maestro')
-        .leftJoinAndSelect('maestro.asignatura','asignatura')
-        .leftJoinAndSelect('asignatura.user','usuario')
-        .leftJoinAndSelect('eventos.categoria','categoria')
-        .getMany();
-        if (hardware.length === 0) {
-          throw new ErrorManager({
-            type:'BAD_REQUEST',
-            message:'No existen registros'
-          });
-        }
-        return hardware
-      } catch (e) {
-        throw ErrorManager.createSignatureError(e.message);
-    }
-  }*/
-  /*async findAllbyUser(user:string):Promise<Event[]> {
-    try {
-        const subjects: Event[] =await this.eventRepostory.createQueryBuilder('eventos')
-        .leftJoinAndSelect('eventos.categoria','categoria')
-        .leftJoinAndSelect('eventos.maestro','maestro')
-        .leftJoinAndSelect('maestro.asignatura','asignatura')
-        .leftJoinAndSelect('asignatura.user','usuario').where('asignatura.user = :user',{user}).getMany();
-        if (!subjects) {
-          throw new ErrorManager({
-            type:'BAD_REQUEST',
-            message:'No existen el registro'
-          });
-        }else {
-          return subjects
-        }
-      } catch (e) {
-        throw ErrorManager.createSignatureError(e.message);
-    }
-  }*/
+  async findAll(): Promise<Hardware[]> {
+    return this.hardwareRepository
+      .createQueryBuilder('hardware')
+      .leftJoinAndSelect('hardware.categories', 'categories')
+      .leftJoinAndSelect('hardware.users', 'users')
+      .getMany();
+  }
 
-  /*async findOne(id: string):Promise<Event> {
+  async findOne(id_h: string):Promise<Hardware> {
     try {
-        const event: Event = await this.eventRepostory
-        .createQueryBuilder('eventos')
-        .leftJoinAndSelect('eventos.maestro','maestro')
-        .leftJoinAndSelect('maestro.asignatura','asignatura')
-        .leftJoinAndSelect('asignatura.user','usuario')
-        .leftJoinAndSelect('eventos.categoria','categoria')
-        .where({id}).getOne()
-        if (!event) {
+        const hardware: Hardware = await this.hardwareRepository.createQueryBuilder('hardware')
+        .leftJoinAndSelect('hardware.categories', 'categories')
+        .leftJoinAndSelect('hardware.users', 'users').where({id_h}).getOne()
+        if (!hardware) {
           throw new ErrorManager({
             type:'BAD_REQUEST',
             message:'No se ha encontrado el registro'
           });
         }
-        return event;
+        return hardware;
       } catch (e) {
         throw ErrorManager.createSignatureError(e.message);
     }
-  }*/
-  /*async update(id: string, updateeventDto: UpdateHardwareDto):Promise<UpdateResult | undefined> {
+  }
+
+  async update(id_h: string, updatehardwareDto: UpdateHardwareDto):Promise<UpdateResult | undefined> {
    try {
-       const event: UpdateResult =  await this.eventRepostory.update(id,updateeventDto);
-       if (event.affected === 0) {
+       const hardware: UpdateResult =  await this.hardwareRepository.update(id_h, updatehardwareDto);
+       if (hardware.affected === 0) {
         throw new ErrorManager({
           type:'BAD_REQUEST',
           message:'No se ha podido actualizar'
         });
        }
-        return event;
+        return hardware;
      } catch (e) {
       throw ErrorManager.createSignatureError(e.message)
       
    }
   }
 
-  async remove(id: string):Promise<DeleteResult | undefined> {
+  async remove(id_h: string):Promise<DeleteResult | undefined> {
     try {
-        const event: DeleteResult =  await this.eventRepostory.delete(id);
-        if (event.affected === 0) {
+        const hardware: DeleteResult =  await this.hardwareRepository.delete(id_h);
+        if (hardware.affected === 0) {
           throw new ErrorManager({
             type:'BAD_REQUEST',
             message:'No se ha podido borrar'
           });
         }
-          return event;
+          return hardware;
       } catch (e) {
         throw ErrorManager.createSignatureError(e.message)
     }
-   }*/
+   }
 }

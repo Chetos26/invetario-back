@@ -4,6 +4,7 @@ import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('Categorias')
 export class Category {
+
   @PrimaryGeneratedColumn('uuid')
   id_c: string;
 
@@ -15,6 +16,7 @@ export class Category {
   })
   nombre_c: string;
 
-  @OneToMany((type) => Hardware, (hardware) => hardware.categorias)
+  @OneToMany((type) => Hardware, (hardware) => hardware.categories)
   hardware: Hardware[];
+  
 }
