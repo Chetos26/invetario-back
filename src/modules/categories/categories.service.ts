@@ -38,9 +38,9 @@ export class CategoriesService {
     }
   }
 
-  async findOne(id: string):Promise<Category> {
+  async findOne(id_c: string):Promise<Category> {
     try {
-        const category: Category = await this.categoryRepostory.createQueryBuilder('hardware').where({id}).getOne()
+        const category: Category = await this.categoryRepostory.createQueryBuilder('hardware').where({id_c}).getOne()
         if (!category) {
           throw new ErrorManager({
             type:'BAD_REQUEST',
@@ -67,9 +67,9 @@ export class CategoriesService {
    }
   }
 
-  async remove(id: string):Promise<DeleteResult | undefined> {
+  async remove(id_c: string):Promise<DeleteResult | undefined> {
     try {
-        const category: DeleteResult =  await this.categoryRepostory.delete(id);
+        const category: DeleteResult =  await this.categoryRepostory.delete(id_c);
         if (category.affected === 0) {
           throw new ErrorManager({
             type:'BAD_REQUEST',
