@@ -30,6 +30,20 @@ export class HardwareService {
     }
   }
 
+  async getAllHardware(selectedCategories?: string, searchTerm?: string): Promise<Hardware[]> {
+    let query = this.hardwareRepository.createQueryBuilder('hardware');
+
+    if (selectedCategories) {
+      query = query.where('hardware.categories = :categories', { categories: selectedCategories });
+    }
+
+    if (searchTerm) {
+      query = query.andWhere('hardware.user = :user', { user: searchTerm });
+    }
+
+    return await query.getMany();
+  }
+
   async findAll(): Promise<Hardware[]> {
     return this.hardwareRepository
       .createQueryBuilder('hardware')
