@@ -68,6 +68,13 @@ export class Hardware {
     })
     ram: string;
 
+    @Column('varchar',{
+        name: 'almacenamiento',
+        length: 100,
+        nullable: false,
+        comment: 'Almacenamiento del equipo',  
+    })
+    almacenamiento: string;
 
     @Column('varchar',{
         name: 'sala',

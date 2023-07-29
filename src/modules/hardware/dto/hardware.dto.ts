@@ -34,6 +34,10 @@ export class HardwareDto{
     ram: string;
 
     @IsNotEmpty()
+    @IsString()
+    almacenamiento: string;
+
+    @IsNotEmpty()
     categoria: Category;
 
     @IsNotEmpty()

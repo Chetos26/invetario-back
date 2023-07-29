@@ -36,6 +36,10 @@ export class UpdateHardwareDto extends PartialType(CreateHardwareDto) {
     ram: string;
 
     @IsNotEmpty()
+    @IsString()
+    almacenamiento: string;
+
+    @IsNotEmpty()
     categoria: Category;
 
     @IsNotEmpty()
