@@ -43,9 +43,4 @@ export class HardwareController {
   remove(@Param("id_h") id_h: string) {
     return this.hardwareService.remove(id_h);
   }
-
-  @Get()
-  async getAllHardware(@Query('selectedCategories') selectedCategories: string, @Query('searchTerm') searchTerm: string) {
-    return await this.hardwareService.getAllHardware(selectedCategories, searchTerm);
-  }
 }
