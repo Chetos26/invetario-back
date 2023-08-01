@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   Query,
+  Res,
 } from "@nestjs/common";
 import { HardwareService } from "./hardware.service";
 import { UpdateHardwareDto } from "./dto/update-hardware.dto";
@@ -43,4 +44,11 @@ export class HardwareController {
   remove(@Param("id_h") id_h: string) {
     return this.hardwareService.remove(id_h);
   }
+
+  /*@Get(":id_h/image")
+  async getImage(@Param("id_h") id_h: string, @Res() res: Response) {
+    const imageBuffer = await this.hardwareService.getImageById(id_h); // Lógica para obtener la imagen desde la base de datos
+    res.setHeader("Content-Type", "image/jpeg"); // Cambia el tipo de contenido según el formato de tu imagen
+    res.send(imageBuffer);
+  }*/
 }
