@@ -3,7 +3,7 @@ import { ImageColumn } from "src/decorators/image.decorator";
 import { Hardware } from "src/modules/hardware/entities/hardware.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity('Usuarios')
+@Entity('Encargados')
 export class Users {
 
   @PrimaryGeneratedColumn('uuid')
@@ -49,7 +49,7 @@ export class Users {
   @Column('varchar',{
     name: 'email',
     nullable: true,
-    length: 20,
+    length: 30,
     comment: 'email del usuario',  
   })
   email: string;
