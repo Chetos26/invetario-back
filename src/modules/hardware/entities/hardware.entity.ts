@@ -24,17 +24,19 @@ export class Hardware {
 
     @Column('varchar',{
         name: 'mouse',
+        length: 5,
         nullable: false,
         comment: 'Mouse',  
         })
-    mouse: boolean;
+    mouse: string;
 
     @Column('varchar',{
         name: 'teclado',
+        length: 5,
         nullable: false,
         comment: 'Teclado',  
         })
-    teclado: boolean;
+    teclado: string;
 
     @Column('varchar',{
         name: 'sn',
