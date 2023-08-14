@@ -6,14 +6,17 @@ import { ConfigModule } from './config/config.module';
 import { ConfigService } from './config/config.service';
 import { TypeOrmModule } from '@nestjs/typeorm/dist/typeorm.module';
 import { CategoriesModule } from './modules/categories/categories.module';
-import { UserModule } from './modules/user/user.module';
 import { UsersModule } from './modules/users/users.module';
 import { HardwareModule } from './modules/hardware/hardware.module';
 import { Configuration } from './config/config.keys';
 import { join } from 'path';
+import { AuthModule } from './modules/auth/auth.module';
+import { UsuarioModule } from './modules/usuario/usuario.module';
+import { TipoUsuarioModule } from './modules/tipo_usuario/tipo_usuario.module';
+
 
 @Module({
-  imports: [ConfigModule, CategoriesModule, UserModule, UsersModule, HardwareModule,
+  imports: [AuthModule, ConfigModule, CategoriesModule, UsuarioModule, UsersModule, HardwareModule,TipoUsuarioModule,
     TypeOrmModule.forRootAsync(
       {
         imports: [ConfigModule],
@@ -33,6 +36,7 @@ import { join } from 'path';
         }
     }
     ),
+    AuthModule,
     ],
   controllers: [AppController],
   providers: [AppService],
