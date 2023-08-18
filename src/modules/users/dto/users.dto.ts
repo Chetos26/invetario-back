@@ -25,5 +25,5 @@ export class UsersDto {
 
   @IsNotEmpty()
   @IsString()
-  telefono: string;
+  telf: string;
 }

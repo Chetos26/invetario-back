@@ -49,7 +49,7 @@ export class Users {
   @Column('varchar',{
     name: 'email',
     nullable: true,
-    length: 30,
+    length: 40,
     comment: 'email del usuario',  
   })
   email: string;

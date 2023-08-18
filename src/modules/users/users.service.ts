@@ -16,25 +16,29 @@ export class UsersService {
 
     async checkDuplicateEmail(email: string): Promise<boolean> {
       const existingUser = await this.usersRepository.findOne({ where: { email } });
+      console.log('Existing user for email:', existingUser);
       return !!existingUser;
     }
   
-    async checkDuplicatePhone(phone: string): Promise<boolean> {
-      const existingUser = await this.usersRepository.findOne({ where: { telf: phone } });
+    async checkDuplicatePhone(telf: string): Promise<boolean> {
+      const existingUser = await this.usersRepository.findOne({ where: { telf } });
+      console.log('Existing user for phone:', existingUser);
       return !!existingUser;
     }
     
     async create(usersDto: UsersDto): Promise<Users> {
-      const { email, telefono } = usersDto;
+      const { email, telf } = usersDto;
   
       if (await this.checkDuplicateEmail(email)) {
+        console.log('Duplicate email detected');
         throw new ErrorManager({
           type: 'BAD_REQUEST',
           message: 'El email ya está registrado',
         });
       }
   
-      if (await this.checkDuplicatePhone(telefono)) {
+      if (await this.checkDuplicatePhone(telf)) {
+        console.log('Duplicate phone detected');
         throw new ErrorManager({
           type: 'BAD_REQUEST',
           message: 'El número de teléfono ya está registrado',
@@ -43,8 +47,10 @@ export class UsersService {
   
       try {
         const users: Users = await this.usersRepository.save(usersDto);
+        console.log('New user created:', users);
         return users;
       } catch (e) {
+        console.error('Error creating user:', e);
         throw new Error(e);
       }
     }

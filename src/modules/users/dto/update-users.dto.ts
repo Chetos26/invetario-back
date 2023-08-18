@@ -23,7 +23,7 @@ export class UpdateUsersDto extends PartialType(CreateUsersDto) {
 
   @IsNotEmpty()
   @IsString()
-  telefono: string;
+  telf: string;
 
   @IsNotEmpty()
   @IsString()
