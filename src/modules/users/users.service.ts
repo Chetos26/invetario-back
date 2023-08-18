@@ -50,23 +50,8 @@ export class UsersService {
     }
   
     async update(id_u: string, updateUsersDto: UpdateUsersDto): Promise<UpdateResult | undefined> {
-      const { email, telefono } = updateUsersDto;
-  
-      if (await this.checkDuplicateEmail(email)) {
-        throw new ErrorManager({
-          type: 'BAD_REQUEST',
-          message: 'El email ya está registrado',
-        });
-      }
-  
-      if (await this.checkDuplicatePhone(telefono)) {
-        throw new ErrorManager({
-          type: 'BAD_REQUEST',
-          message: 'El número de teléfono ya está registrado',
-        });
-      }
-  
       try {
+        // Aquí se realiza la actualización, pero sin validaciones de duplicados
         const users: UpdateResult = await this.usersRepository.update(id_u, updateUsersDto);
         if (users.affected === 0) {
           throw new ErrorManager({
