@@ -1,21 +1,29 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  Query,
-  Res,
-} from "@nestjs/common";
+/* eslint-disable prettier/prettier */
+import {Controller,Get,Post,Body,Patch,Param,Delete, UseInterceptors, UploadedFile, Inject,} from "@nestjs/common";
 import { HardwareService } from "./hardware.service";
 import { UpdateHardwareDto } from "./dto/update-hardware.dto";
 import { HardwareDto } from "./dto/hardware.dto";
+import { FileInterceptor } from "@nestjs/platform-express";
+import { diskStorage } from "multer";
 
 @Controller("hardware")
 export class HardwareController {
-  constructor(private readonly hardwareService: HardwareService) {}
+  constructor(
+    @Inject(HardwareService)
+    private readonly hardwareService: HardwareService
+  ) {}
+
+  @Post('upload')
+  @UseInterceptors(FileInterceptor('file', {
+    storage: diskStorage({
+      destination: '../uploads'
+      /* file: renameImage */
+    }),
+    /* fileFilter: */
+  }))
+  uploadFile(@UploadedFile() file: Express.Multer.File){
+    console.log(file)
+  }
 
   @Post()
   create(@Body() createHardwareDto: HardwareDto) {

@@ -1,7 +1,5 @@
 /* eslint-disable prettier/prettier */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from "@nestjs/common";
-import { CreateHardwareDto } from "./dto/create-hardware.dto";
 import { UpdateHardwareDto } from "./dto/update-hardware.dto";
 import { DeleteResult, Repository, UpdateResult } from "typeorm";
 import { ErrorManager } from "src/utils/error.manager";
@@ -9,8 +7,9 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Category } from "../categories/entities/category.entity";
 import { Hardware } from "./entities/hardware.entity";
 import { HardwareDto } from "./dto/hardware.dto";
-import { PaginationDto } from "src/common/dto/pagination.dto";
 import { Users } from "../users/entities/users.entity";
+import * as fs from 'fs'; // Importa el módulo fs para manejar archivos
+import * as path from 'path';
 
 @Injectable()
 export class HardwareService {
@@ -99,4 +98,7 @@ export class HardwareService {
         throw ErrorManager.createSignatureError(e.message)
     }
    }
+
+   
+  
 }

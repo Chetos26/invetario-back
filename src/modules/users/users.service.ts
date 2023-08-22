@@ -41,7 +41,7 @@ export class UsersService {
         console.log('Duplicate phone detected');
         throw new ErrorManager({
           type: 'BAD_REQUEST',
-          message: 'El número de teléfono ya está registrado',
+          message: 'El teléfono ya está registrado',
         });
       }
   

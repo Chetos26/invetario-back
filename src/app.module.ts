@@ -13,10 +13,11 @@ import { join } from 'path';
 import { AuthModule } from './modules/auth/auth.module';
 import { UsuarioModule } from './modules/usuario/usuario.module';
 import { TipoUsuarioModule } from './modules/tipo_usuario/tipo_usuario.module';
+import { MulterModule } from '@nestjs/platform-express';
 
 
 @Module({
-  imports: [AuthModule, ConfigModule, CategoriesModule, UsuarioModule, UsersModule, HardwareModule,TipoUsuarioModule,
+  imports: [AuthModule, ConfigModule, CategoriesModule, UsuarioModule, UsersModule, HardwareModule,TipoUsuarioModule,MulterModule.register({dest: "../uploads",}),
     TypeOrmModule.forRootAsync(
       {
         imports: [ConfigModule],
