@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Module } from '@nestjs/common';
+import { HttpCode, HttpStatus, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from './config/config.module';
@@ -17,7 +17,7 @@ import { MulterModule } from '@nestjs/platform-express';
 
 
 @Module({
-  imports: [AuthModule, ConfigModule, CategoriesModule, UsuarioModule, UsersModule, HardwareModule,TipoUsuarioModule,MulterModule.register({dest: "../uploads",}),
+  imports: [AuthModule, ConfigModule, CategoriesModule, UsuarioModule, UsersModule, HardwareModule,TipoUsuarioModule,
     TypeOrmModule.forRootAsync(
       {
         imports: [ConfigModule],
