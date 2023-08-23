@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { UpdateHardwareDto } from "./dto/update-hardware.dto";
 import { DeleteResult, Repository, UpdateResult } from "typeorm";
 import { ErrorManager } from "src/utils/error.manager";
@@ -8,18 +8,24 @@ import { Category } from "../categories/entities/category.entity";
 import { Hardware } from "./entities/hardware.entity";
 import { HardwareDto } from "./dto/hardware.dto";
 import { Users } from "../users/entities/users.entity";
-import * as fs from 'fs'; // Importa el módulo fs para manejar archivos
-import * as path from 'path';
 
 @Injectable()
 export class HardwareService {
   constructor(
     @InjectRepository(Hardware) private hardwareRepository: Repository<Hardware>,
     @InjectRepository(Category) private categoryRepository: Repository<Category>,
-    @InjectRepository(Category) private usersRepository: Repository<Users>
+    @InjectRepository(Category) private usersRepository: Repository<Users>,
     ){}
-    
 
+/*     async uploadFile(filename: string): Promise<Hardware> {
+      // Lógica para guardar la información de la imagen en la entidad Hardware
+      // Por ejemplo, crea una nueva instancia de Hardware y asigna el nombre de archivo
+      const newHardware = this.hardwareRepository.create({ filename });
+      const savedHardware = await this.hardwareRepository.save(newHardware);
+      return savedHardware;
+    }
+     */
+    
   async create(createhardwareDto: HardwareDto):Promise<Hardware> {
     try {
         const hardware: Hardware = await this.hardwareRepository.save(createhardwareDto);
@@ -97,8 +103,5 @@ export class HardwareService {
       } catch (e) {
         throw ErrorManager.createSignatureError(e.message)
     }
-   }
-
-   
-  
+  }
 }

@@ -5,9 +5,12 @@ import { Users } from "src/modules/users/entities/users.entity";
 
 export class HardwareDto{
 
+    /* @IsNotEmpty()
+    @IsString()
+    filename: string; */
     @IsNotEmpty()
     @IsString()
-    image: string;
+    monitor_sn: string;
 
     @IsNotEmpty()
     @IsString()
@@ -20,10 +23,6 @@ export class HardwareDto{
     @IsNotEmpty()
     @IsString()
     modelo: string;
-
-    @IsNotEmpty()
-    @IsString()
-    os: string;
 
     @IsNotEmpty()
     @IsString()

@@ -11,8 +11,13 @@ export class Hardware {
     @PrimaryGeneratedColumn('uuid')
     id_h: string;
 
-    @ImageColumn()
-    image: string;
+    /* @Column('varchar', {
+        name: 'filename', // Agrega el campo filename
+        length: 255,
+        nullable: true, // Puede ser nulo si no siempre hay imágenes asociadas
+        comment: 'Nombre del archivo de la imagen',
+      })
+      filename: string; */
 
     @Column('varchar',{
         name: 'monitor_sn',

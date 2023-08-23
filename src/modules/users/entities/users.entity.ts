@@ -23,7 +23,7 @@ export class Users {
     
   @Column('varchar',{
     name: 'nombre_u',
-    length: 15,
+    length: 20,
     nullable: false,
     comment: 'Nombre del usuario',  
     })
@@ -32,7 +32,7 @@ export class Users {
 
   @Column('varchar',{
     name: 'apellido_u',
-    length: 10,
+    length: 20,
     nullable: false,
     comment: 'Apellido del usuario',  
   })

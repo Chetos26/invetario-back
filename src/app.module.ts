@@ -14,6 +14,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { UsuarioModule } from './modules/usuario/usuario.module';
 import { TipoUsuarioModule } from './modules/tipo_usuario/tipo_usuario.module';
 import { MulterModule } from '@nestjs/platform-express';
+import { ServeStaticModule } from '@nestjs/serve-static';
 
 
 @Module({
@@ -38,6 +39,10 @@ import { MulterModule } from '@nestjs/platform-express';
     }
     ),
     AuthModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..','public'),
+      serveRoot: '/public',
+    }),
     ],
   controllers: [AppController],
   providers: [AppService],

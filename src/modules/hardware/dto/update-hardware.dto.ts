@@ -7,9 +7,13 @@ import { Users } from 'src/modules/users/entities/users.entity';
 
 export class UpdateHardwareDto extends PartialType(CreateHardwareDto) {
 
-    @IsOptional()
+   /*  @IsOptional()
     @IsString()
-    image: string;
+    image: string; */
+
+    @IsNotEmpty()
+    @IsString()
+    monitor_sn: string;
 
     @IsOptional()
     @IsString()

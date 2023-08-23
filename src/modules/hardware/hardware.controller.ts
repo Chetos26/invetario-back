@@ -1,16 +1,31 @@
 /* eslint-disable prettier/prettier */
-import {Controller,Get,Post,Body,Patch,Param,Delete, UseInterceptors, UploadedFile, Inject,} from "@nestjs/common";
+import {Controller,Get,Post,Body,Patch,Param,Delete, UseInterceptors, UploadedFile, Inject} from "@nestjs/common";
 import { HardwareService } from "./hardware.service";
 import { UpdateHardwareDto } from "./dto/update-hardware.dto";
 import { HardwareDto } from "./dto/hardware.dto";
 import { FileInterceptor } from "@nestjs/platform-express";
+import { diskStorage } from "multer";
+import { fileFilter, renameImage } from "../helpers/image.helper";
 
 @Controller("hardware")
 export class HardwareController {
   constructor(
-    @Inject(HardwareService)
-    private readonly hardwareService: HardwareService
+    @Inject(HardwareService) private readonly hardwareService: HardwareService
   ) {}
+  
+  /* @Post('upload')
+  @UseInterceptors(FileInterceptor('file', {
+    storage: diskStorage({
+      destination: './public', // Carpeta donde se guardará la imagen
+      filename: renameImage,  // Función para renombrar la imagen
+    }),
+    fileFilter: fileFilter,   // Función para validar el formato de la imagen
+  }))
+  async uploadFile(@UploadedFile() file: Express.Multer.File) {
+    // Llama a la función en el servicio para guardar la información de la imagen
+    const uploadedFile = await this.hardwareService.uploadFile(file.filename);
+    return { message: 'Archivo subido exitosamente', file: uploadedFile };
+  } */
 
   @Post()
   create(@Body() createHardwareDto: HardwareDto) {
@@ -39,11 +54,4 @@ export class HardwareController {
   remove(@Param("id_h") id_h: string) {
     return this.hardwareService.remove(id_h);
   }
-
-  /*@Get(":id_h/image")
-  async getImage(@Param("id_h") id_h: string, @Res() res: Response) {
-    const imageBuffer = await this.hardwareService.getImageById(id_h); // Lógica para obtener la imagen desde la base de datos
-    res.setHeader("Content-Type", "image/jpeg"); // Cambia el tipo de contenido según el formato de tu imagen
-    res.send(imageBuffer);
-  }*/
 }
