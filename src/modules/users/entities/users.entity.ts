@@ -9,9 +9,9 @@ export class Users {
   @PrimaryGeneratedColumn('uuid')
     id_u: string;
 
-  @ImageColumn()
+  /* @ImageColumn()
     foto: string;
-    nullable: true;
+    nullable: true; */
 
   @Column('varchar',{
     name: 'cargo',

@@ -3,9 +3,9 @@ import { IsNotEmpty, IsString} from "class-validator";
 
 export class UsersDto {
   
-  @IsNotEmpty()
+  /* @IsNotEmpty()
   @IsString()
-  foto: string;
+  foto: string; */
 
   @IsNotEmpty()
   @IsString()

@@ -21,8 +21,8 @@ export class Hardware {
 
     @Column('varchar',{
         name: 'monitor_sn',
-        length: 50,
-        nullable: false,
+        length: 20,
+        nullable: true,
         comment: 'Numero de serie Monitor',  
         })
     monitor_sn: string;
@@ -30,7 +30,7 @@ export class Hardware {
     @Column('varchar',{
         name: 'mouse',
         length: 5,
-        nullable: false,
+        nullable: true,
         comment: 'Mouse',  
         })
     mouse: string;
@@ -38,23 +38,23 @@ export class Hardware {
     @Column('varchar',{
         name: 'teclado',
         length: 5,
-        nullable: false,
+        nullable: true,
         comment: 'Teclado',  
         })
     teclado: string;
 
     @Column('varchar',{
         name: 'sn',
-        length: 50,
-        nullable: false,
+        length: 20,
+        nullable: true,
         comment: 'Numero de Serie del computador',  
         })
     sn: string;
 
     @Column('varchar',{
         name: 'marca',
-        length: 10,
-        nullable: false,
+        length: 15,
+        nullable: true,
         comment: 'Marca del equipo',  
     })
     marca: string;
@@ -62,7 +62,7 @@ export class Hardware {
     @Column('varchar',{
         name: 'procesador',
         length: 100,
-        nullable: false,
+        nullable: true,
         comment: 'Procesador del equipo',  
     })
     procesador: string;
@@ -70,7 +70,7 @@ export class Hardware {
     @Column('varchar',{
         name: 'ram',
         length: 100,
-        nullable: false,
+        nullable: true,
         comment: 'RAM del equipo',  
     })
     ram: string;
@@ -78,7 +78,7 @@ export class Hardware {
     @Column('varchar',{
         name: 'almacenamiento',
         length: 100,
-        nullable: false,
+        nullable: true,
         comment: 'Almacenamiento del equipo',  
     })
     almacenamiento: string;
@@ -86,7 +86,7 @@ export class Hardware {
     @Column('varchar',{
         name: 'sala',
         length: 15,
-        nullable: false,
+        nullable: true,
         comment: 'Ubicacion del equipo',  
     })
     sala: string;

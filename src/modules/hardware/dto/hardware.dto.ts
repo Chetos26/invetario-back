@@ -1,38 +1,38 @@
 /* eslint-disable prettier/prettier */
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsOptional, IsString, IsNotEmpty } from "class-validator";
 import { Category } from "src/modules/categories/entities/category.entity";
 import { Users } from "src/modules/users/entities/users.entity";
 
 export class HardwareDto{
 
-    /* @IsNotEmpty()
+    /* @IsOptional()
     @IsString()
     filename: string; */
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     monitor_sn: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     sn: string;
     
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     marca: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     modelo: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     procesador: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     ram: string;
 
-    @IsNotEmpty()
+    @IsOptional()
     @IsString()
     almacenamiento: string;
 
